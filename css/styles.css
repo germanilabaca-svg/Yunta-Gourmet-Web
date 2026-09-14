@@ -105,10 +105,14 @@ button { font-family: inherit; cursor: pointer; }
   top: 0;
   left: 0;
   right: 0;
-  /* Above .main-nav (z-index 101/105) so the toggle button (the "×" when the
-     mobile panel is open) stays visible and clickable on top of it. The header
-     spans the full width but only its direct children should intercept clicks —
-     see pointer-events rule below — so it never blocks the nav links beside it. */
+  /* On mobile (max-width:720px) .main-nav drops to z-index 105, below this
+     header's 110, so the toggle button (the "×" when the full-screen mobile
+     panel is open) stays visible and clickable on top of it. On desktop
+     .main-nav is 111 — above this header — so the nav links render on top of
+     the header's translucent/blurred background once scrolled, instead of
+     being blurred by its backdrop-filter. The header spans the full width but
+     only its direct children should intercept clicks — see pointer-events
+     rule below — so it never blocks the nav links beside it. */
   z-index: 110;
   display: flex;
   align-items: center;
@@ -172,7 +176,12 @@ body.nav-is-dark .nav-toggle span { background: var(--cream); }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 101;
+  /* Above .site-header (110) so the nav links render on top of the header's
+     translucent/blurred background once scrolled — otherwise backdrop-filter
+     blurs the links behind it and they read as "disappearing". The mobile
+     media query below overrides this back down to 105, keeping the header's
+     nav-toggle (110) above the full-screen mobile panel, as before. */
+  z-index: 111;
   display: flex;
   align-items: center;
   justify-content: flex-end;
