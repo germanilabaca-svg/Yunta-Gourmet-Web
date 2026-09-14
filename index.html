@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yunta Gourmet — Encurtidos y Fermentados Artesanales</title>
+<meta name="description" content="Yunta Gourmet: salsas, encurtidos, confitados y charcutería artesanal de producción propia. Cajas de regalo gourmet para eventos y empresas en Santiago de Chile.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Yunta Gourmet">
+<meta property="og:description" content="Productos gourmet artesanales y cajas de regalo, hechos para compartir.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo/yunta-sello-alta.png">
+
+<link rel="icon" type="image/png" href="assets/logo/yunta-isotipo-alta.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <a href="#inicio" class="brand" aria-label="Yunta Gourmet — Inicio">
+    <img class="logo-mark logo-mark--light" src="assets/logo/yunta-isotipo-negativo-v2.png" alt="Yunta Gourmet">
+    <img class="logo-mark logo-mark--dark" src="assets/logo/yunta-isotipo-positivo-v2.png" alt="Yunta Gourmet">
+  </a>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Fuera del header a propósito: el backdrop-filter del header (efecto vidrio al hacer
+     scroll) crea un containing block nuevo para descendientes position:fixed, lo que
+     desalinea un overlay de pantalla completa anidado. Como hermano de <header>, el
+     menú móvil queda siempre fijo respecto al viewport. -->
+<nav class="main-nav" id="mainNav">
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#marca">La Marca</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#cajas-de-regalo">Cajas de Regalo</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <img class="watermark" src="assets/logo/yunta-isotipo-negativo-v2.png" alt="">
+  <div class="hero-inner container">
+    <div class="hero-copy">
+      <div class="hero-photo">
+        <img src="assets/productos/gama-completa-piramide.jpg" alt="Línea completa de productos Yunta Gourmet en pirámide">
+      </div>
+      <div class="hero-text">
+        <p class="eyebrow" style="color:var(--cream); opacity:0.6;">Artesanal · Santiago de Chile</p>
+        <h1>Lo bueno<br>se disfruta en yunta.</h1>
+        <p class="lede">Salsas, encurtidos, confitados y charcutería artesanal, de producción propia. Ideales para darle el toque gourmet a tus comidas y para sorprender a quienes te rodean.</p>
+        <div class="hero-actions">
+          <a href="#productos" class="btn btn--outline-cream">Ver productos</a>
+          <a href="#cajas-de-regalo" class="btn btn--solid" style="background:var(--cream); color:var(--ink);">Cajas de regalo</a>
+        </div>
+      </div>
+      <a href="#marca" class="scroll-cue">
+        <span>Descubre la marca</span>
+        <span class="line"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LA MARCA ============ -->
+<section class="section--cream section-pad" id="marca">
+  <div class="container">
+    <div class="marca-grid">
+      <div data-reveal>
+        <div class="isotipo-frame">
+          <img src="assets/logo/yunta-lockup-negativo.png" alt="Yunta Gourmet — Encurtidos y Fermentados">
+        </div>
+      </div>
+      <div class="marca-copy" data-reveal>
+        <p class="eyebrow">La Marca</p>
+        <h2>Una yunta de sabores</h2>
+        <p>Yunta Gourmet nace de una idea simple: las cosas buenas se disfrutan de a dos, o en grupo. Una "yunta" es el par, la junta, esa persona especial y los amigos con los que uno se sienta a la mesa.</p>
+        <p>Por eso elaboramos salsas, encurtidos, confitados y charcutería artesanal en pequeños lotes de producción propia — pensados para acompañar, combinar y compartir. Sin producción en masa, sin apuro: solo buen oficio y productos de primera calidad.</p>
+        <p>Una marca joven, cercana. Nos mueve el estar presentes en tus celebraciones, agradecimientos y momentos especiales.</p>
+      </div>
+    </div>
+
+    <div class="value-props">
+      <div class="value-prop" data-reveal>
+        <span class="num">01</span>
+        <h3>100% artesanal</h3>
+        <p>Elaboración propia, en pequeños lotes.</p>
+      </div>
+      <div class="value-prop" data-reveal>
+        <span class="num">02</span>
+        <h3>Productos de temporada y seleccionados</h3>
+        <p>Buscamos lo mejor que nos ofrece nuestra tierra en cada estación.</p>
+      </div>
+      <div class="value-prop" data-reveal>
+        <span class="num">03</span>
+        <h3>Para compartir</h3>
+        <p>Formatos ideales para la mesa entre varios, o esa celebración especial, de dos.</p>
+      </div>
+      <div class="value-prop" data-reveal>
+        <span class="num">04</span>
+        <h3>Segmento premium</h3>
+        <p>Calidad y presentación pensadas al detalle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTOS ============ -->
+<section class="section-pad" id="productos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow" style="opacity:0.45;">La Carta</p>
+      <h2>Nuestros productos</h2>
+      <p>Cuatro líneas artesanales, pensadas para combinarse entre ellas. Perfectas en cualquier mesa o caja de regalo.</p>
+    </div>
+
+    <div class="product-hero" data-reveal>
+      <img src="assets/productos/gama-completa.jpg" alt="Línea completa de productos Yunta Gourmet: encurtidos, salsas y confitados" loading="lazy">
+    </div>
+
+    <div class="product-grid" data-reveal>
+      <div class="product-card">
+        <span class="index">01</span>
+        <h3>Salsas</h3>
+        <p>Salsas artesanales de autor, para acompañar carnes, quesos y picoteos con carácter propio.</p>
+        <span class="tag">Producción propia</span>
+      </div>
+      <div class="product-card">
+        <span class="index">02</span>
+        <h3>Encurtidos</h3>
+        <p>Vegetales y frutos encurtidos con técnica y tiempo, el complemento justo para cualquier tabla.</p>
+        <span class="tag">Fermentación artesanal</span>
+      </div>
+      <div class="product-card">
+        <span class="index">03</span>
+        <h3>Confitados</h3>
+        <p>Carnes cocinadas en la más pura grasa animal, con tiempo y dedicación.</p>
+        <span class="tag">Edición limitada</span>
+      </div>
+      <div class="product-card">
+        <span class="index">04</span>
+        <h3>Charcutería</h3>
+        <p>Selección de charcutería artesanal, curada con oficio, sin necesidad de cadena de frío.</p>
+        <span class="tag">Curado artesanal</span>
+      </div>
+    </div>
+
+    <div class="section-head" data-reveal style="margin-top: clamp(3rem, 6vw, 5rem);">
+      <p class="eyebrow" style="opacity:0.45;">Disponibles ahora</p>
+      <h2 style="font-size: clamp(1.6rem, 3vw, 2.1rem);">Nuestra selección actual</h2>
+    </div>
+
+    <div class="product-photo-grid" data-reveal>
+      <figure class="product-photo-card">
+        <img src="assets/productos/bruselas-encurtidas.jpg" alt="Bruselas Encurtidas Yunta Gourmet" loading="lazy">
+        <figcaption>Bruselas Encurtidas</figcaption>
+      </figure>
+      <figure class="product-photo-card">
+        <img src="assets/productos/bbq.jpg" alt="Salsa BBQ Yunta Gourmet" loading="lazy">
+        <figcaption>BBQ</figcaption>
+      </figure>
+      <figure class="product-photo-card">
+        <img src="assets/productos/aji-verde-maracuya.jpg" alt="Ají Verde Maracuyá Yunta Gourmet" loading="lazy">
+        <figcaption>Ají Verde Maracuyá</figcaption>
+      </figure>
+      <figure class="product-photo-card">
+        <img src="assets/productos/jalapeno-pina.jpg" alt="Jalapeño Piña Yunta Gourmet" loading="lazy">
+        <figcaption>Jalapeño Piña</figcaption>
+      </figure>
+      <figure class="product-photo-card">
+        <img src="assets/productos/chutney-de-higos.jpg" alt="Chutney de Higos Yunta Gourmet" loading="lazy">
+        <figcaption>Chutney de Higos</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAJAS DE REGALO ============ -->
+<section class="section--ink section-pad" id="cajas-de-regalo">
+  <img class="watermark" src="assets/logo/yunta-isotipo-negativo-v2.png" alt="">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Cajas de Regalo</p>
+      <h2>Un regalo que no pasará desapercibido</h2>
+      <p>Curatorías de productos Yunta Gourmet armadas para regalar, en formatos pensados para cada ocasión.</p>
+    </div>
+
+    <div class="gift-grid" data-reveal>
+      <div class="gift-card">
+        <h3>Para tus eventos</h3>
+        <p>La caja perfecta para llevar a una cena, un cumpleaños o para agradecer a alguien especial.</p>
+        <ul>
+          <li>Cenas y celebraciones</li>
+          <li>Cumpleaños</li>
+          <li>Regalos de agradecimiento</li>
+        </ul>
+      </div>
+      <div class="gift-card">
+        <h3>Regalos corporativos</h3>
+        <p>Cajas a medida para fin de año, hitos de equipo o regalos a clientes — con la calidad que representa a tu empresa.</p>
+        <ul>
+          <li>Fin de año y fechas clave</li>
+          <li>Regalos a clientes</li>
+          <li>Volúmenes y branding a medida</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gift-cta" data-reveal>
+      <p>Cuéntanos la ocasión y juntos armemos tu caja.</p>
+      <a href="#contacto" class="btn btn--outline-cream">Cotizar una caja</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DÓNDE ENCONTRARNOS ============ -->
+<section class="section--cream section-pad" id="donde-encontrarnos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow" style="opacity:0.45;">Dónde Encontrarnos</p>
+      <h2>Santiago, y donde te encuentres en temporada</h2>
+    </div>
+    <div class="reach" data-reveal>
+      <div class="reach-item">
+        <p class="eyebrow" style="opacity:0.4;">Todo el año</p>
+        <h3>Santiago de Chile</h3>
+        <p>Despacho y venta directa en la Región Metropolitana.</p>
+      </div>
+      <div class="reach-item">
+        <p class="eyebrow" style="opacity:0.4;">Invierno</p>
+        <h3>Centros de ski</h3>
+        <p>Presencia estacional en centros de ski cercanos a Santiago.</p>
+      </div>
+      <div class="reach-item">
+        <p class="eyebrow" style="opacity:0.4;">Verano</p>
+        <h3>Costa central</h3>
+        <p>Presencia estacional en playas cercanas a Santiago.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section-pad" id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info" data-reveal>
+        <p class="eyebrow" style="opacity:0.45;">Contacto</p>
+        <h2>Hablemos de tu próxima yunta</h2>
+        <p>Para pedidos, cajas de regalo o alianzas con tiendas gourmet, escríbenos por el canal que prefieras.</p>
+        <div class="contact-channels">
+          <a href="https://wa.me/56958479730" target="_blank" rel="noopener">
+            <span class="label">WhatsApp</span> +56 9 5847 9730
+          </a>
+          <a href="https://wa.me/56997892530" target="_blank" rel="noopener">
+            <span class="label">WhatsApp&nbsp;2</span> +56 9 9789 2530
+          </a>
+          <a href="mailto:contacto@thieleilabaca.com">
+            <span class="label">Email</span> contacto@thieleilabaca.com
+          </a>
+          <a href="https://instagram.com/yuntagourmet" target="_blank" rel="noopener">
+            <span class="label">Instagram</span> @yuntagourmet
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-reveal>
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="motivo">Motivo</label>
+          <input type="text" id="motivo" name="motivo" placeholder="Ej: Caja de regalo cumpleaños">
+        </div>
+        <div class="field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--outline-ink" style="align-self:flex-start;">Enviar mensaje</button>
+        <p class="form-status" id="formStatus"></p>
+        <p class="form-note">Al enviar, se abrirá tu cliente de correo con el mensaje listo para despachar a Yunta Gourmet.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHATSAPP FLOTANTE ============ -->
+<a class="wa-float" href="https://wa.me/56958479730" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.3.63 4.46 1.73 6.3L4 29l7.86-1.7a12 12 0 0 0 4.15.74h.01C22.65 28.03 28 22.65 28 16.02 28 9.38 22.64 3 16.01 3Zm0 22.4h-.01a10.3 10.3 0 0 1-5.26-1.44l-.38-.22-4.66 1.01 1-4.54-.25-.4a10.28 10.28 0 0 1-1.6-5.5C4.86 9.4 9.86 4.6 16 4.6c5.6 0 10.4 4.8 10.4 10.4 0 5.7-4.7 10.4-10.4 10.4Zm5.7-7.78c-.31-.16-1.84-.9-2.12-1.01-.28-.1-.49-.16-.7.16-.2.31-.8 1-.98 1.22-.18.2-.36.23-.67.08-.31-.16-1.3-.48-2.48-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.55.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.55-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.52-.7-.53h-.6c-.2 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.6 0 1.53 1.12 3.02 1.27 3.22.16.2 2.2 3.36 5.34 4.71.75.32 1.33.51 1.78.66.75.24 1.43.2 1.97.13.6-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.48-.08-.13-.28-.2-.59-.36Z"/></svg>
+</a>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo/yunta-isotipo-negativo-v2.png" alt="Yunta Gourmet">
+        <p>Productos gourmet artesanales y cajas de regalo, hechos en Santiago de Chile.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#marca">La Marca</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#cajas-de-regalo">Cajas de Regalo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/56958479730" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:contacto@thieleilabaca.com">contacto@thieleilabaca.com</a></li>
+            <li><a href="https://instagram.com/yuntagourmet" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Yunta Gourmet. Todos los derechos reservados.</span>
+      <span>Santiago de Chile</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
