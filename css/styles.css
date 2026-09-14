@@ -1,0 +1,690 @@
+/* =========================================================
+   Yunta Gourmet — Landing page styles
+   Paleta e identidad: blanco hueso de etiqueta + tinta negra.
+   - Tinta:  #16130F
+   - Hueso:  #FAFAF8 (mismo blanco hueso de las etiquetas de producto)
+   - Tipografías: "Bodoni Moda" (display) + "Archivo" (texto)
+   ========================================================= */
+
+:root {
+  --ink: #16130f;
+  --ink-85: rgba(22, 19, 15, 0.85);
+  --ink-50: rgba(22, 19, 15, 0.5);
+  --ink-18: rgba(22, 19, 15, 0.18);
+  --ink-08: rgba(22, 19, 15, 0.08);
+  --cream: #fafaf8;
+  --cream-60: rgba(250, 250, 248, 0.6);
+  --cream-30: rgba(250, 250, 248, 0.3);
+  --white: #ffffff;
+
+  --font-display: "Bodoni Moda", "Times New Roman", serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --container: 1180px;
+  --gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p { margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 3rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.55;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background: var(--ink-18);
+  margin: 0 auto;
+}
+.divider--light { background: rgba(239, 233, 221, 0.25); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: transparent;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.btn--solid {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.btn--solid:hover { background: transparent; color: var(--ink); }
+.btn--outline-cream {
+  color: var(--cream);
+  border-color: var(--cream-60);
+}
+.btn--outline-cream:hover { background: var(--cream); color: var(--ink); }
+.btn--outline-ink {
+  color: var(--ink);
+  border-color: var(--ink-18);
+}
+.btn--outline-ink:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Above .main-nav (z-index 101/105) so the toggle button (the "×" when the
+     mobile panel is open) stays visible and clickable on top of it. The header
+     spans the full width but only its direct children should intercept clicks —
+     see pointer-events rule below — so it never blocks the nav links beside it. */
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem clamp(1.25rem, 5vw, 3rem);
+  background: rgba(255, 255, 255, 0);
+  pointer-events: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+.site-header > * { pointer-events: auto; }
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  box-shadow: 0 1px 0 var(--ink-08);
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+.site-header .logo-mark { height: 34px; width: auto; transition: opacity 0.2s ease; }
+.site-header .logo-mark--dark { display: none; }
+.site-header.is-scrolled .logo-mark--light { display: none; }
+.site-header.is-scrolled .logo-mark--dark { display: block; }
+/* The mobile menu panel is white, so swap to the dark logo mark while it's open —
+   otherwise the negative (light-on-black) mark shows as a stray black square. */
+body.nav-open .logo-mark--light { display: none; }
+body.nav-open .logo-mark--dark { display: block; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 28px;
+  height: 20px;
+  position: relative;
+  z-index: 110;
+}
+.nav-toggle span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+}
+body.nav-is-dark .nav-toggle span { background: var(--cream); }
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 9px; }
+.nav-toggle span:nth-child(3) { top: 18px; }
+.nav-open .nav-toggle span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+.nav-open .nav-toggle span { background: var(--ink) !important; }
+
+/* .main-nav lives as a SIBLING of .site-header (not a child) on purpose: the header
+   gets backdrop-filter when scrolled, which creates a new containing block for any
+   position:fixed descendant and would throw a full-screen fixed nav out of alignment.
+   As a sibling, it stays fixed to the viewport no matter what the header does. On
+   desktop it overlays the header row (pointer-events re-enabled only on its own
+   content); on mobile the media query below turns it into the full-screen panel. */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.1rem clamp(1.25rem, 5vw, 3rem);
+  pointer-events: none;
+  transition: padding 0.3s ease;
+}
+body.is-scrolled .main-nav { padding-top: 0.7rem; padding-bottom: 0.7rem; }
+.main-nav ul {
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  pointer-events: auto;
+}
+.main-nav a {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.75;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+body:not(.is-scrolled) .main-nav a { color: var(--cream); }
+.main-nav a:hover { opacity: 1; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+  padding-top: 6rem;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 60% at 82% 12%, rgba(239, 233, 221, 0.07), transparent 60%),
+    radial-gradient(50% 50% at 12% 92%, rgba(239, 233, 221, 0.05), transparent 60%);
+  pointer-events: none;
+}
+.hero .watermark {
+  position: absolute;
+  right: -6%;
+  bottom: -14%;
+  width: 46%;
+  min-width: 320px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
+.hero-copy { display: flex; flex-direction: column; align-items: center; }
+.hero-photo {
+  margin: 0 auto 2.75rem;
+  max-width: 300px;
+}
+.hero-photo img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  max-width: 16ch;
+  margin: 0 auto 1.5rem;
+}
+.hero p.lede {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--cream-60);
+  max-width: 46ch;
+  margin: 0 auto 2.5rem;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-60);
+}
+
+@media (min-width: 900px) {
+  .hero-inner { text-align: left; }
+  .hero-copy {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    text-align: left;
+  }
+  .hero-copy > .hero-text { grid-column: 1; grid-row: 1; }
+  .hero-photo { grid-column: 2; grid-row: 1 / span 2; margin: 0; max-width: none; align-self: center; }
+  .hero h1, .hero p.lede { margin-left: 0; margin-right: 0; }
+  .hero-actions { justify-content: flex-start; }
+  .hero-copy > .scroll-cue { grid-column: 1; align-items: flex-start; }
+}
+.scroll-cue .line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--cream-60), transparent);
+  animation: pulse-line 2s ease-in-out infinite;
+}
+@keyframes pulse-line { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+/* ---------- Section shells ---------- */
+section { position: relative; }
+.section-pad { padding: clamp(4.5rem, 10vw, 8rem) 0; }
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.2;
+}
+.section-head p { margin-top: 1.1rem; color: var(--ink-50); font-size: 1.02rem; }
+.section--ink { background: var(--ink); color: var(--cream); position: relative; overflow: hidden; }
+.section--ink .section-head p { color: var(--cream-60); }
+.section--ink .container { position: relative; z-index: 1; }
+.section--ink .watermark {
+  position: absolute;
+  left: -4%;
+  top: 7%;
+  width: 24%;
+  min-width: 200px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.section--cream { background: var(--cream); }
+
+/* ---------- Marca ---------- */
+.marca-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+.marca-grid .isotipo-frame {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  aspect-ratio: 420 / 460;
+  border-radius: 6px;
+  background: var(--ink);
+  border: 1px solid var(--cream-30);
+  box-sizing: border-box;
+  padding: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.marca-grid .isotipo-frame img { width: 100%; height: 100%; object-fit: contain; }
+.marca-copy .eyebrow { opacity: 0.45; }
+.marca-copy h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  margin-bottom: 1.25rem;
+  line-height: 1.22;
+}
+.marca-copy p { color: var(--ink-85); max-width: 52ch; }
+.marca-copy p + p { margin-top: 1rem; }
+
+.value-props {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.value-prop {
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--ink-18);
+}
+.value-prop .num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.value-prop h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+.value-prop p { font-size: 0.88rem; color: var(--ink-50); }
+
+/* ---------- Productos ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--ink-18);
+  border: 1px solid var(--ink-18);
+}
+.product-card {
+  background: var(--cream);
+  padding: clamp(2rem, 4vw, 3rem);
+  transition: background 0.25s ease;
+}
+.product-card:hover { background: var(--white); }
+.product-card .index {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+.product-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  margin: 0.9rem 0 0.8rem;
+}
+.product-card p { color: var(--ink-50); max-width: 42ch; }
+.product-card .tag {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+.product-hero {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+  border-radius: 4px;
+}
+.product-hero img { width: 100%; height: auto; }
+
+.product-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(1px, 0.3vw, 2px);
+  background: var(--ink-18);
+  border: 1px solid var(--ink-18);
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+.product-photo-card {
+  margin: 0;
+  background: var(--cream);
+}
+.product-photo-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.product-photo-card figcaption {
+  padding: 0.9rem 0.6rem 1.1rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+}
+
+/* ---------- Cajas de regalo ---------- */
+.gift-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.gift-card {
+  border: 1px solid rgba(239, 233, 221, 0.2);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 2.75rem);
+}
+.gift-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+  margin-bottom: 0.9rem;
+}
+.gift-card p { color: var(--cream-60); margin-bottom: 1.5rem; }
+.gift-card ul { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.75rem; }
+.gift-card li {
+  font-size: 0.88rem;
+  color: var(--cream-60);
+  padding-left: 1.1rem;
+  position: relative;
+}
+.gift-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 1px;
+  background: var(--cream-60);
+}
+.gift-cta { text-align: center; margin-top: clamp(2.5rem, 5vw, 4rem); }
+.gift-cta p { color: var(--cream-60); margin-bottom: 1.5rem; }
+
+/* ---------- Dónde encontrarnos ---------- */
+.reach {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+}
+.reach-item { padding: 0 0.5rem; }
+.reach-item .eyebrow { opacity: 0.4; }
+.reach-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+.reach-item p { color: var(--ink-50); font-size: 0.92rem; }
+
+/* ---------- Contacto ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  /* Without this, grid's default "stretch" makes both columns the same height —
+     the short-content column (whichever it is) then gets stretched taller than
+     its own content, which for a flex column with a fixed gap just leaves dead
+     air after the last item instead of actually lining anything up. Aligning
+     both to "start" lets each column be exactly as tall as its own content, so
+     nothing looks like it's floating disconnected from the row above it. */
+  align-items: start;
+}
+.contact-info h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  margin-bottom: 1.1rem;
+  line-height: 1.2;
+}
+.contact-info > p { color: var(--ink-50); max-width: 42ch; margin-bottom: 2.25rem; }
+.contact-channels { display: flex; flex-direction: column; gap: 1.1rem; }
+.contact-channels a {
+  display: grid;
+  grid-template-columns: 11ch 1fr;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--ink-18);
+}
+.contact-channels a span.label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  white-space: nowrap;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.5rem; }
+.field label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+.field input,
+.field textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--ink-18);
+  background: transparent;
+  box-shadow: none;
+  padding: 0.7rem 0.2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom-color: var(--ink);
+}
+/* Neutraliza el resaltado que algunas extensiones de Chrome (gestores de
+   contraseñas, asistentes de escritura) agregan sobre campos de texto libre
+   como "Motivo" y "Mensaje" — no es parte del diseño del sitio. */
+.field input:-webkit-autofill,
+.field textarea:-webkit-autofill {
+  box-shadow: 0 0 0 1000px var(--cream) inset;
+  -webkit-text-fill-color: var(--ink);
+}
+.form-note { font-size: 0.82rem; color: var(--ink-50); margin-top: -0.5rem; }
+.form-status { font-size: 0.85rem; min-height: 1.2em; }
+
+/* ---------- WhatsApp float ---------- */
+.wa-float {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(22, 19, 15, 0.25);
+  transition: transform 0.2s ease;
+}
+.wa-float:hover { transform: translateY(-3px); }
+.wa-float svg { width: 26px; height: 26px; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--ink);
+  color: var(--cream-60);
+  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(239, 233, 221, 0.15);
+}
+.footer-brand img { height: 30px; margin-bottom: 1rem; }
+.footer-brand p { max-width: 32ch; font-size: 0.88rem; }
+.footer-cols { display: flex; gap: clamp(2.5rem, 6vw, 5rem); flex-wrap: wrap; }
+.footer-col h4 {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-col a { font-size: 0.9rem; transition: color 0.2s ease; }
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.75rem;
+  font-size: 0.78rem;
+}
+
+/* ---------- Reveal on scroll ---------- */
+[data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .marca-grid { grid-template-columns: 1fr; }
+  .value-props { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: 1fr; }
+  .product-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .gift-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .reach { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle { display: block; }
+  .main-nav {
+    position: fixed;
+    inset: 0;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
+    z-index: 105;
+  }
+  .nav-open .main-nav { transform: translateY(0); }
+  .main-nav ul { flex-direction: column; text-align: center; gap: 2rem; }
+  .main-nav a { color: var(--ink) !important; font-size: 1.05rem; opacity: 1; }
+}
